@@ -27,7 +27,40 @@ type Bank = {    //interface for the bank object
 }
 
 
-export const bank = {} as Bank;  //define bank object as type Bank
+export const bank = {
+    transactionsDB: [],
+    saveTransaction: (customerId: number, amount: number) => {
+        console.log(customerId, amount)
+    },
+    debit: (customerId: number, amount: number) => {
+        console.log(customerId, amount);
+    },
+    credit: (customerId: number, amount: number) => {
+        console.log(customerId, amount);
+    },
+    getBalance: function(customerId: number) {
+        // first get the customer from the transactionsDB by using the customererId
+        let customer: CustomerRecord
+        for(let c of this.transactionsDB) {
+            if(c.customerId === customerId) {
+                customer = c
+            }
+        }
+        // iterate over the customerTransactions of that customer
+        // add them up
+        // return the sum
+        return 0;
+    },
+    bankBalance: function() {
+        let sum = 0;
+        for(const customer of this.transactionsDB) {
+            for(const transaction of customer.customerTransactions) {
+                sum += transaction
+            }
+        }
+        return sum;
+    }
+} as Bank;  //define bank object as type Bank
 
 bank.transactionsDB = [
     { customerId: 1, customerTransactions: [10, 50, -40] },
