@@ -1,5 +1,5 @@
 /* comment out the import assert line (in /dist/test js mocha file) when running in the browser */
-import { assert } from "chai";
+// import { assert } from "chai";
 import { bank } from "../src/bank.js"; //import objects used in the Mocha tests
 describe("bank tests", function () {
     beforeEach(function () {
@@ -8,7 +8,7 @@ describe("bank tests", function () {
             { customerId: 1, customerTransactions: [10, 50, -40] },
             { customerId: 2, customerTransactions: [10, 10, -10] },
             { customerId: 3, customerTransactions: [5, -5, 55] }
-        ];
+        ]; // 55
     });
     it("checks initial balance", function () {
         assert.strictEqual(bank.bankBalance(), 85);

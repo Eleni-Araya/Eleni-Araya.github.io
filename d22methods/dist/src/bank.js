@@ -10,7 +10,51 @@ The bank object should have a transactionsDB property, which will be an array of
 {customerId: 1234, customerTransactions: [10, 50, -40] } would be one element of the array.
 Add any necessary types to the above bank object.
 */
-export const bank = {}; //define bank object as type Bank
+export const bank = {
+    transactionsDB: [],
+    saveTransaction: function (customerId, amount) {
+        console.log(customerId, amount);
+    },
+    debit: function (customerId, amount) {
+        let customer = this.getCustomerById(customerId);
+        if (this.getBalance(customerId) >= amount) {
+            customer.customerTransactions.push(-amount);
+        }
+    },
+    credit: function (customerId, amount) {
+        let customer = this.getCustomerById(customerId);
+        customer.customerTransactions.push(amount);
+    },
+    getCustomerById: function (customerId) {
+        // first get the customer from the transactionsDB by using the customererId
+        for (let c of this.transactionsDB) {
+            if (c.customerId === customerId) {
+                return c;
+            }
+        }
+        return null;
+    },
+    getBalance: function (customerId) {
+        let customer = this.getCustomerById(customerId);
+        let sum = 0;
+        for (let transaction of customer.customerTransactions) {
+            sum += transaction;
+        }
+        // iterate over the customerTransactions of that customer
+        // add them up
+        // return the sum
+        return sum;
+    },
+    bankBalance: function () {
+        let sum = 0;
+        for (const customer of this.transactionsDB) {
+            for (const transaction of customer.customerTransactions) {
+                sum += transaction;
+            }
+        }
+        return sum;
+    }
+}; //define bank object as type Bank
 bank.transactionsDB = [
     { customerId: 1, customerTransactions: [10, 50, -40] },
     { customerId: 2, customerTransactions: [10, 10, -10] },
