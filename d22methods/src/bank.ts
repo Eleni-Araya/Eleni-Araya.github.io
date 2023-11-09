@@ -23,38 +23,50 @@ type Bank = {    //interface for the bank object
     debit: (customerId: number, amount: number) => void;
     credit: (customerId: number, amount: number) => void;
     getBalance: (customerId: number) => number;
+    getCustomerById: (customerId: number) => CustomerRecord;
     bankBalance: () => number;
 }
 
 
 export const bank = {
     transactionsDB: [],
-    saveTransaction: (customerId: number, amount: number) => {
+    saveTransaction: function (customerId: number, amount: number) {
         console.log(customerId, amount)
     },
-    debit: (customerId: number, amount: number) => {
-        console.log(customerId, amount);
+    debit: function (customerId: number, amount: number) {
+        let customer = this.getCustomerById(customerId);
+        if (this.getBalance(customerId) >= amount) {
+            customer.customerTransactions.push(-amount)
+        }
     },
-    credit: (customerId: number, amount: number) => {
-        console.log(customerId, amount);
+    credit: function (customerId: number, amount: number) {
+        let customer = this.getCustomerById(customerId);
+        customer.customerTransactions.push(amount)
     },
-    getBalance: function(customerId: number) {
+    getCustomerById: function (customerId: number) {
         // first get the customer from the transactionsDB by using the customererId
-        let customer: CustomerRecord
-        for(let c of this.transactionsDB) {
-            if(c.customerId === customerId) {
-                customer = c
+        for (let c of this.transactionsDB) {
+            if (c.customerId === customerId) {
+                return c
             }
+        }
+        return null
+    },
+    getBalance: function (customerId: number) {
+        let customer = this.getCustomerById(customerId);
+        let sum = 0
+        for (let transaction of customer.customerTransactions) {
+            sum += transaction
         }
         // iterate over the customerTransactions of that customer
         // add them up
         // return the sum
-        return 0;
+        return sum;
     },
-    bankBalance: function() {
+    bankBalance: function () {
         let sum = 0;
-        for(const customer of this.transactionsDB) {
-            for(const transaction of customer.customerTransactions) {
+        for (const customer of this.transactionsDB) {
+            for (const transaction of customer.customerTransactions) {
                 sum += transaction
             }
         }
