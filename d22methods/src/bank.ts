@@ -33,6 +33,7 @@ export const bank = {
     saveTransaction: function (customerId: number, amount: number) {
         console.log(customerId, amount)
     },
+    
     debit: function (customerId: number, amount: number) {
         let customer = this.getCustomerById(customerId);
         if (this.getBalance(customerId) >= amount) {

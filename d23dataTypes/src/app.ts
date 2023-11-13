@@ -85,3 +85,27 @@ export function camelize(str:string):string {
 // const sum = num1 + num2;
 // console.log(`The sum of ${num1} and ${num2} is: ${sum}`);
 
+type Person = {
+  name: string;
+  age: number;
+  job: string;
+  sayHi(this: Person): void;
+  }
+ const manager: Person = {
+  name: "John",
+  age: 27,
+  job: "Software Engineer",
+  sayHi: sayHowdy
+  };
+  const intern: Person= {
+  name: "Ben",
+  age: 21,
+  job: "Software Engineer Intern",
+  sayHi: sayHowdy
+  };
+ 
+ function sayHowdy(this: Person) {
+ console.log("Hello, my name is ", this.name,"I am ",this.age,"my job is ",this.job);
+}
+manager.sayHi();
+intern.sayHi();
