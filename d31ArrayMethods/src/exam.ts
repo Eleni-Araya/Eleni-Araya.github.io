@@ -1,3 +1,5 @@
+import { Session } from "inspector";
+
 type Session = {
     userId: number;
     duration: number;
@@ -19,6 +21,21 @@ export function getAllSessions(days: Day[]): Session[] {
 export function getAllDurations(days: Day[]): number[] {
     return getAllSessions(days).map(session => session.duration)
 }
+
+export function calculateDailyTotalDuration(arr:Session[]):number{
+    const result= arr.reduce((sum,totalduration)=>sum+totalduration.duration,0);
+    return result;
+}
+
+// export function calculateDailyTotalDuration(arr:Session[]):number{
+//     let sum:number=0;
+//    for(let session of arr){
+//     sum=sum+session.duration;
+//    }
+//    return sum;
+// }
+
+  
 
 // function replaceEnds(arr: number[], start: number, end: number): number[] {
 //     const result = arr.slice() // copy arr into result so that we don't touch the original array
