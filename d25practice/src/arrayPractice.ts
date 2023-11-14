@@ -68,10 +68,6 @@ export function includesEvenAge(peopleArray: Person[],target: number):boolean{
   
   
   
-  
-
-  
-  // Testing the functions
  
   
   
