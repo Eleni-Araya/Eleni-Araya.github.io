@@ -1,4 +1,4 @@
-import { Session } from "inspector";
+// import { Session } from "inspector";
 
 type Session = {
     userId: number;
@@ -15,7 +15,7 @@ export function getAllSessions(days: Day[]): Session[] {
     for(let day of days) {
        result = result.concat(day.sessions)
     }
-    return result
+    return result;
 }
 
 export function getAllDurations(days: Day[]): number[] {
@@ -26,6 +26,14 @@ export function calculateDailyTotalDuration(arr:Session[]):number{
     const result= arr.reduce((sum,totalduration)=>sum+totalduration.duration,0);
     return result;
 }
+
+// export function getAllSessionsForUser(dailyRecord:Day,id:number) :Session[]{
+
+// //     let allSess:Session[]=getAllSessions(Day[]);
+   
+// //    return  allSess.map((num)=>{if(num.userId===id)return num;});
+
+// }
 
 // export function calculateDailyTotalDuration(arr:Session[]):number{
 //     let sum:number=0;

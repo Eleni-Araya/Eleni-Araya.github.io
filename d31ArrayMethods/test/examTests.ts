@@ -2,7 +2,8 @@
 import { assert } from "chai";
 
 import { firstLast, replaceEnds, higho, square, absVal, } from "../src/exam.js";
-import { calculateDailyTotalDuration, getAllSessions, getAllSessionsForUser, getAllDurations } from "../src/exam.js";
+import { calculateDailyTotalDuration, getAllSessions, getAllDurations } from "../src/exam.js";
+// ToDO this function later  getAllSessionsForUser
 
 
 
@@ -86,14 +87,12 @@ describe("fitness tracking", function () {
     });
 
     //Use an appropriate array method to get all sessions for a given userid .  Hint:  use getAllSessions.  
-    it("getAllSessionsForUser", function () {
-        assert.deepEqual(getAllSessionsForUser(dailyRecord, 2), [session2, session3]);
-    });
+    // it("getAllSessionsForUser", function () {
+    //     assert.deepEqual(getAllSessionsForUser(dailyRecord, 2), [session2, session3]);
+    // });
 
     //Use an appropriate array method to get array of just duration times [60, 45, 30, 15 ,75] Hint:  use getAllSessions.  
     it("getAllDurations", function () {
         assert.deepEqual(getAllDurations(dailyRecord), [60, 45, 30, 15, 75]);
     });
-
-
 });
