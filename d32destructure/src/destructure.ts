@@ -7,11 +7,11 @@ P.S. Use Object.entries and destructuring to iterate over key/value pairs.
 
 // the following type definition says that SalaryObj has keys of type string and values of type number
 type SalaryObj = { [key: string]: number };
-let salaries:SalaryObj={
-    "john":100,
-    "Eleni":200,
-    "Suresh":300
-}
+// let salaries:SalaryObj={
+//     "john":100,
+//     "Eleni":200,
+//     "Suresh":300
+// }
 
 
 export function topSalary(salaries:SalaryObj) :string{

@@ -1,4 +1,4 @@
-export {collectRoomNumbers, collectRoomsAndCapacities , collectLabeledRoomCapscountStudentsInClassroom, 
+export {collectRoomNumbers, collectRoomsAndCapacities , collectLabeledRoomCaps,countStudentsInClassroom, 
   findClassroomsWithCapacity, findStudentsOlderThan, averageStudentAge};  //implement these
 
 type Classroom = {
@@ -52,8 +52,7 @@ roomNumber as parameters and returns the number of students in the specified cla
  minimum capacity as parameters and returns an array of classroom objects that meet or exceed the specified capacity.
 6.	Create a function findStudentsOlderThan(classrooms, minAge) that takes the classrooms array and a minimum 
 age as parameters and returns an array of student objects who are older than the specified age, along with the name of their classroom.
-7.	Create a function averageStudentAge(classrooms) that takes the classrooms array as a parameter and returns 
-the average age of students across all classrooms.
+7.
  */
 function collectRoomNumbers():number[]{
   return classrooms.map(({roomNumber})=>roomNumber);
@@ -62,9 +61,39 @@ function collectRoomsAndCapacities():string[]{
   return classrooms.map(({roomNumber, capacity})=>`${roomNumber}::${capacity}`)
 }
 
-function collectLabeledRoomCapscountStudentsInClassroom():{ roomNumber: number; capacity: number }[]{
+function collectLabeledRoomCaps():{ roomNumber: number; capacity: number }[]{
   return classrooms.map(({roomNumber,capacity})=>({roomNumber,capacity}))
+}
+
+function countStudentsInClassroom(classrooms:Classroom[], roomNum:number):number{
+ const roomFind=classrooms.find(({roomNumber})=>roomNumber===roomNum);
+
+ if(roomFind){
+  return roomFind.students.length
   }
+  else return 0;
+ }
+ function findClassroomsWithCapacity(classrooms:Classroom[],minCapacity:number):Classroom[]{
+  return classrooms.filter((classroom) => classroom.capacity === minCapacity);
+}
+function findStudentsOlderThan(classrooms: Classroom[], minAge: number): { student: Student, classroomName: string }[] {
+  return classrooms.reduce((result, { roomNumber, students }) => {
+    const olderStudentsInRoom = students.filter(student => student.age > minAge);
+    const studentsWithClassroomName = olderStudentsInRoom.map(student => ({ student, classroomName: `Room ${roomNumber}` }));
+    return result.concat(studentsWithClassroomName);
+  }, [] as { student: Student, classroomName: string }[]);
+}
+
+function averageStudentAge(classrooms: Classroom[]): number {
+  const totalStudents = classrooms.reduce((total, { students }) => total + students.length, 0);
+  const totalAge = classrooms.reduce((total, { students }) => total + students.reduce((sum, { age }) => sum + age, 0), 0);
+
+  // Avoid division by zero
+  return totalStudents !== 0 ? totalAge / totalStudents : 0;
+}
+ 
+
+
 
 
  
