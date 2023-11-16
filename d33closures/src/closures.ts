@@ -6,7 +6,13 @@
  * @returns {Function} returns a function that tests whether its argument is in the arr
  * 
  */
-
+export function inArray(arr:number[]):(num:number)=>boolean{
+    function filtering(target:number):boolean {
+       let found= arr.find((num:number)=>num===target)
+       return (found===target)
+    }
+    return filtering; 
+}
 
 /**
  * 
@@ -15,16 +21,28 @@
  * @returns {Function} returns a function that tests whether its argument is inside the range
  * 
  */
-
-
-
-
+export function inBetween(a:number,b:number):(num:number)=>boolean{
+    function inBetweenCheck(target:number):boolean{
+        return (a <= target && target <= b);
+    }
+    return inBetweenCheck;
+}
 
 /**
  * @returns {Function} closure that returns it's number
  */
 
+export function makeArmy(): Function[] {
+    const shooters = []
+    
+    for(let j = 0; j < 6; j++) {
+        shooters.push(function() {
+            return j
+        })
+    }
 
+    return shooters
+}
 
   
   //army[0](); // the shooter number 0 shows 10

@@ -20,8 +20,26 @@ type Cart = {
     getTotal: () => number;
 }
 
-export function createShoppingCart():  Cart {
- //IMPLEMENT THIS FUNCTION
+export function createShoppingCart(): Cart {
+    //IMPLEMENT THIS FUNCTION
+    let store: Item[] = [];
+    function addItem(item: string, price: number): void {
+        let product: Item = {
+            item: item,
+            price: price
+        }
+        store.push(product)
+    }
 
-
+    function removeItem(removeItem: string): void {
+        store = store.filter((storeItem: Item) => (storeItem.item !== removeItem))
+    }
+    function getTotal(): number {
+        return store.reduce((sum, item) => (sum + item.price), 0)
+    }
+    return {
+        addItem: addItem,
+        removeItem: removeItem,
+        getTotal: getTotal,
+    }
 }
