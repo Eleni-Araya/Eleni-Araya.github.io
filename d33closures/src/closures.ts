@@ -6,12 +6,12 @@
  * @returns {Function} returns a function that tests whether its argument is in the arr
  * 
  */
-export function inArray(arr:number[]):(num:number)=>boolean{
-    function filtering(target:number):boolean {
-       let found= arr.find((num:number)=>num===target)
-       return (found===target)
+export function inArray(arr: number[]): (num: number) => boolean {
+    function filtering(target: number): boolean {
+        let found = arr.find((num: number) => num === target)
+        return (found === target)
     }
-    return filtering; 
+    return filtering;
 }
 
 /**
@@ -21,8 +21,8 @@ export function inArray(arr:number[]):(num:number)=>boolean{
  * @returns {Function} returns a function that tests whether its argument is inside the range
  * 
  */
-export function inBetween(a:number,b:number):(num:number)=>boolean{
-    function inBetweenCheck(target:number):boolean{
+export function inBetween(a: number, b: number): (num: number) => boolean {
+    function inBetweenCheck(target: number): boolean {
         return (a <= target && target <= b);
     }
     return inBetweenCheck;
@@ -34,17 +34,16 @@ export function inBetween(a:number,b:number):(num:number)=>boolean{
 
 export function makeArmy(): Function[] {
     const shooters = []
-    
-    for(let j = 0; j < 6; j++) {
-        shooters.push(function() {
+    for (let j = 0; j < 10; j++) {
+        function shooterFunction() {
             return j
-        })
+        }
+        shooters.push(shooterFunction)
     }
-
     return shooters
 }
 
-  
-  //army[0](); // the shooter number 0 shows 10
-  //army[5](); // and number 5 also outputs 10...
+
+//army[0](); // the shooter number 0 shows 10
+//army[5](); // and number 5 also outputs 10...
 

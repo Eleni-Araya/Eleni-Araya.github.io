@@ -38,14 +38,9 @@ describe("inBetween", function () {
   });
 });
 
-
-
-
 describe("army", function () {
 
   let army = makeArmy();
-
-
   it("army[0] shows 0", function () {
     const shooter0 = army[0]();
     assert.strictEqual(shooter0, 0);
