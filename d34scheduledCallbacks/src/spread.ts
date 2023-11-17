@@ -26,8 +26,8 @@ export function findMin(...arr:number[]):number{
     return min;
 }
 export function findProduct(...arr:number[]):number{
-    let product:number;
-    return product=arr.reduce((num,arr)=>(num*arr),1);
+
+    return arr.reduce((num,arr)=>(num*arr),1);
 }
 
 

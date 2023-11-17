@@ -24,5 +24,25 @@ const player2 = { jersey: 12, stats: [{ game: 1, points: 16 }, { game: 2, points
 export const player3 = { jersey: 6, stats: [{ game: 1, points: 10 }, { game: 2, points: 6 }] };
 export const teamStats = [player1, player2, player3];
 
+export function findTotalPlayerPoints(player:Player):number{
+    // let totalPoints:number=0;
+   
+   return player.stats.reduce((totalPoints,statsOfPlayer)=>(totalPoints+statsOfPlayer.points),0)
 
-
+}
+export function findTotalPointsByJersey(jersyNum:number):number{
+    let playerPoints:number=0;
+    for(let player of teamStats){
+        if(jersyNum===player.jersey){
+            playerPoints=findTotalPlayerPoints(player);
+        } 
+    }
+    return playerPoints;
+}
+export function findTotalScores(teamStats:Player[]):JerseyPoints[]{ 
+     return teamStats.map((player)=>{
+        return {jersey:player.jersey,
+                total:findTotalPlayerPoints(player)
+            }
+    });   
+}
